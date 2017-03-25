@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context.xsd
+	   http://www.springframework.org/schema/tx
+	   http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+	<context:property-placeholder location="classpath:jdbc.properties" ignore-unresolvable="true"/>
+
+	<!-- ==============================   DATASOURCE   ============================= -->
+
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="dataSourceClassName" value="${jdbc.dataSourceClassName}" />
+		<property name="dataSourceProperties">
+			<props>
+				<prop key="user">${jdbc.user}</prop>
+				<prop key="password">${jdbc.password}</prop>
+				<prop key="databaseName">${jdbc.databaseName}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- HikariCP configuration -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+
+	<!-- ==============================   HIBERNATE CONFIG   ============================= -->
+
+	<bean id="sessionFactory"
+		  class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="hr.tvz.foodie.core.model" />
+		<property name="hibernateProperties">
+			<value>
+				hibernate.format_sql=false
+				hibernate.show_sql=true
+				hibernate.dialect=org.hibernate.dialect.SQLServerDialect
+			</value>
+		</property>
+	</bean>
+
+	<!-- ==============================   TRANSACTION CONFIG   ============================= -->
+
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- Transakcije nad servisima su definirane anotacijama -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- ==============================   DAO & SERVICES   ============================= -->
+
+	<!-- Servisi su definirani anotacijama -->
+	<context:component-scan base-package="hr.tvz.foodie.core.dao, hr.tvz.foodie.core.service" />
+
+</beans>
