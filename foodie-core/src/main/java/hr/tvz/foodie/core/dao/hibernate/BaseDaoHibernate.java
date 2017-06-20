@@ -22,7 +22,6 @@ public class BaseDaoHibernate<E, ID> implements BaseDao<E, ID> {
 		return sessionFactory.getCurrentSession();
 	}
 
-	@SuppressWarnings("unchecked")
 	public BaseDaoHibernate() {
 		// Dohvaća klasu preko generic tipa
 		ParameterizedType pt = (ParameterizedType) getClass().getGenericSuperclass();
