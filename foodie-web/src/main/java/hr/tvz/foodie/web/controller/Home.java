@@ -1,7 +1,7 @@
 package hr.tvz.foodie.web.controller;
 
 import hr.tvz.foodie.core.model.Recipe;
-import hr.tvz.foodie.core.service.FoodieService;
+import hr.tvz.foodie.core.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +17,11 @@ import java.util.List;
 public class Home {
 
 	@Autowired
-	private FoodieService foodieService;
+	private RecipeService recipeService;
 
 	@RequestMapping(value = {"/", "/home"}, method = RequestMethod.GET)
-	public String printHello(Model model) {
-
-		List<Recipe> allRecipes = foodieService.findAllRecipes();
+	public String showHomePage(Model model) {
+		List<Recipe> allRecipes = recipeService.findAllRecipes();
 
 		model.addAttribute("allRecipes", allRecipes);
 

@@ -1,26 +1,13 @@
 package hr.tvz.foodie.core.dao.hibernate;
 
 import hr.tvz.foodie.core.dao.BaseDao;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-/**
- * Created by Antonio on 25.3.2017..
- */
-public class BaseDaoHibernate<E, ID> implements BaseDao<E, ID> {
-
-	@Autowired
-	private SessionFactory sessionFactory;
+public class BaseDaoHibernate<E, ID> extends DaoHibernate implements BaseDao<E, ID> {
 
 	private Class<E> entityClass;
-
-	private Session getCurrentSession() {
-		return sessionFactory.getCurrentSession();
-	}
 
 	public BaseDaoHibernate() {
 		// Dohvaća klasu preko generic tipa

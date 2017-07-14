@@ -44,16 +44,22 @@
 				<version>4.0</version>
 			</dependency>
 
-			<!--<dependency>-->
-				<!--<groupId>javax.servlet</groupId>-->
-				<!--<artifactId>javax.servlet-api</artifactId>-->
-				<!--<version>3.1.0</version>-->
-			<!--</dependency>-->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>3.1.0</version>
+			</dependency>
 
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
 				<version>1.2</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>1.3.3</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -64,6 +70,7 @@
 			<artifactId>logback-classic</artifactId>
 			<version>1.2.2</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>

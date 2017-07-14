@@ -6,10 +6,8 @@ import java.io.Serializable;
 @Entity
 @Table(name = "IO.Sastojak")
 public class Ingredient implements Serializable {
-	
-	private static final long serialVersionUID = -6116433666342582670L;
 
-	private int id;
+	private Long id;
 	private String title;
 	private int amount;
 
@@ -22,11 +20,11 @@ public class Ingredient implements Serializable {
 	@Id
 	@Column(name = "Id")
 	@GeneratedValue
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

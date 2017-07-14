@@ -7,26 +7,23 @@ import java.io.Serializable;
 @Table(name = "Sifra.Faza")
 public class Stage implements Serializable {
 
-	private static final long serialVersionUID = 7686657836435086581L;
-
-	private int id;
+	private Long id;
 	private String stage;
 	
 	public Stage(String stage) {
 		this.stage = stage;
 	}
 	
-	public Stage() {
-	}
+	public Stage() {}
 
 	@Id
 	@Column(name = "Id")
 	@GeneratedValue
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

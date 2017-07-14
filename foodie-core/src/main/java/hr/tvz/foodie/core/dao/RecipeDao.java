@@ -2,8 +2,10 @@ package hr.tvz.foodie.core.dao;
 
 import hr.tvz.foodie.core.model.Recipe;
 
-/**
- * Created by Antonio on 25.3.2017..
- */
+import java.util.List;
+
 public interface RecipeDao extends  BaseDao<Recipe, Long>{
+
+	List<Recipe> getUserRecipes(Long userId);
+
 }

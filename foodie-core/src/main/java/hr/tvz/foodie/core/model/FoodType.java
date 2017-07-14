@@ -7,13 +7,11 @@ import java.io.Serializable;
 @Table(name = "Sifra.TipKuhinje")
 public class FoodType implements Serializable {
 
-	private static final long serialVersionUID = -6455069384627106134L;
-
-	private int id;
+	private Long id;
 	private String title;
 
 	public FoodType(String id) {
-		this.id = Integer.parseInt(id);
+		this.id = new Long(id);
 	}
 
 	public FoodType() {}
@@ -21,11 +19,11 @@ public class FoodType implements Serializable {
 	@Id
 	@Column(name = "Id")
 	@GeneratedValue
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -8,8 +8,6 @@ import java.util.List;
 @Table(name = "IO.Recept")
 public class Recipe implements Serializable {
 
-	private static final long serialVersionUID = -4329593611469137196L;
-
 	private Long id;
 	private String title;
 	private String description;
@@ -18,15 +16,14 @@ public class Recipe implements Serializable {
 	private String skillLevel;
 	private Integer readCount;
 	private User user;
+	private byte[] image;
+	private String imageBase64;
 
 	private List<Ingredient> ingredients;
 	private List<Stage> stages;
 
-	// @Column(name = "image")
-	// private String image;
-
 	public Recipe(String title, String description, FoodType foodType, int makingTime, String skillLevel,
-			List<Ingredient> ingredients, List<Stage> stages) {
+				  List<Ingredient> ingredients, List<Stage> stages) {
 		this.title = title;
 		this.description = description;
 		this.foodType = foodType;
@@ -36,12 +33,11 @@ public class Recipe implements Serializable {
 		this.stages = stages;
 	}
 
-	public Recipe() {
-	}
+	public Recipe() {}
 
 	@Id
 	@Column(name = "Id")
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
@@ -98,8 +94,8 @@ public class Recipe implements Serializable {
 
 	@ManyToMany(targetEntity = Ingredient.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "IO.ReceptSastojak", joinColumns = {
-			@JoinColumn(name = "IdRecept", nullable = false) }, inverseJoinColumns = {
-			@JoinColumn(name = "IdSastojak", nullable = false) })
+			@JoinColumn(name = "IdRecept", nullable = false)}, inverseJoinColumns = {
+			@JoinColumn(name = "IdSastojak", nullable = false)})
 	public List<Ingredient> getIngredients() {
 		return ingredients;
 	}
@@ -110,8 +106,8 @@ public class Recipe implements Serializable {
 
 	@ManyToMany(targetEntity = Stage.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "IO.ReceptFaza", joinColumns = {
-			@JoinColumn(name = "IdRecept", nullable = false) }, inverseJoinColumns = {
-			@JoinColumn(name = "IdFaza", nullable = false) })
+			@JoinColumn(name = "IdRecept", nullable = false)}, inverseJoinColumns = {
+			@JoinColumn(name = "IdFaza", nullable = false)})
 	public List<Stage> getStages() {
 		return stages;
 	}
@@ -139,10 +135,29 @@ public class Recipe implements Serializable {
 		this.readCount = readCount;
 	}
 
+	@Column(name = "Slika")
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
+	@Transient
+	public String getImageBase64() {
+		return imageBase64;
+	}
+
+	public void setImageBase64(String imageBase64) {
+		this.imageBase64 = imageBase64;
+	}
+
 	@Override
 	public String toString() {
 		return "Recipe [title=" + title + ", description=" + description + ", foodType=" + foodType + ", makingTime="
-				+ makingTime + ", skillLevel=" + skillLevel + ", ingredients=" + ingredients + ", stages=" + stages + "]";
+				+ makingTime + ", skillLevel=" + skillLevel + ", ingredients=" + ingredients + ", stages=" + stages +
+				"]";
 	}
-	
+
 }

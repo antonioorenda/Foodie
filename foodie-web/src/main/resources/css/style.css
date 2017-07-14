@@ -1,39 +1,39 @@
 @media screen and (max-width: 768px) {
-	.vision{
-		display: none !important;
-	}
+    .vision {
+        display: none !important;
+    }
 }
 
-@media screen and (min-width: 418px) and (max-width: 768px){
-    h1.vision-small{
-       margin-top: -33% !important;
+@media screen and (min-width: 418px) and (max-width: 768px) {
+    h1.vision-small {
+        margin-top: -33% !important;
     }
 }
 
 @media screen and (max-width: 417px) {
-    h1.vision-small{
-       margin-top: -40% !important;
+    h1.vision-small {
+        margin-top: -40% !important;
     }
 }
 
 @media screen and (min-width: 768px) {
-    .vision-small{
+    .vision-small {
         display: none !important;
     }
 }
 
 @media screen and (min-width: 768px) {
-    .vision-small{
+    .vision-small {
         display: none !important;
     }
 }
 
-body{
-	padding-top: 0px !important;
+body {
+    padding-top: 0px !important;
 }
 
-.header-home{
-	background-image: url('../images/food.jpg');
+.header-home {
+    background-image: url('../images/food.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     width: 100%;
@@ -41,52 +41,53 @@ body{
     padding-top: 53.48120764017252%;
 }
 
-h1.vision{
-	font-family: helvetica;
-	font-size: 4.5vw;
-	text-align: center;
-	margin-top: -34%;
-	margin-left: 15%;
-	margin-right: 15%;
-	color: white;
-	text-transform: uppercase;
-	position: relative;
+h1.vision {
+    font-family: helvetica;
+    font-size: 4.5vw;
+    text-align: center;
+    margin-top: -34%;
+    margin-left: 15%;
+    margin-right: 15%;
+    color: white;
+    text-transform: uppercase;
+    position: relative;
 }
 
-h1.vision-small{
-	font-family: helvetica;
-	font-size: 32px;
-	text-align: center;
-	margin-top: -40%;
-	margin-left: 8%;
-	margin-right: 8%;
-	color: white;
-	text-transform: uppercase;
-	position: relative;
+h1.vision-small {
+    font-family: helvetica;
+    font-size: 32px;
+    text-align: center;
+    margin-top: -40%;
+    margin-left: 8%;
+    margin-right: 8%;
+    color: white;
+    text-transform: uppercase;
+    position: relative;
 }
 
-hr.vision{
-	color: white;
-	margin-left: 31.5%;
-	margin-right: 31.5%;
-	position: relative;
-	margin-top: 50px;
+hr.vision {
+    color: white;
+    margin-left: 31.5%;
+    margin-right: 31.5%;
+    position: relative;
+    margin-top: 50px;
 }
 
-h4.vision{
-	font-family: helvetica;
-	font-size: 2vw;
-	text-align: center;
-	margin-left: 20%;
-	margin-right: 20%;
-	color: white;
-	position: relative;
+h4.vision {
+    font-family: helvetica;
+    font-size: 2vw;
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    color: white;
+    position: relative;
 }
 
 .btn-file {
     position: relative;
     overflow: hidden;
 }
+
 .btn-file input[type=file] {
     position: absolute;
     top: 0;
@@ -101,4 +102,25 @@ h4.vision{
     background: white;
     cursor: inherit;
     display: block;
+}
+
+.frame {
+    height: 170px; /* equals max image height */
+    width: 250px;
+    white-space: nowrap;
+    text-align: center;
+    margin: 1em 0;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.recipe-image {
+    background: #3A6F9A;
+    vertical-align: middle;
+    max-height: 170px;
+    max-width: 250px;
 }
