@@ -1,6 +1,6 @@
 <div class="modal hide fade in" id="loginForm" aria-hidden="false">
     <div class="modal-header">
-        <i class="icon-remove" data-dismiss="modal" aria-hidden="true"></i>
+        <i class="icon-remove" id="dismissLogin" data-dismiss="modal" aria-hidden="true"></i>
         <h4>User Login</h4>
     </div>
     <!--Modal Body-->

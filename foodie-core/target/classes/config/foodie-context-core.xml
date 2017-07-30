@@ -15,7 +15,7 @@
 	<!-- ==============================   DATASOURCE   ============================= -->
 
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<property name="dataSourceClassName" value="${jdbc.dataSourceClassName}" />
+		<property name="dataSourceClassName" value="${jdbc.dataSourceClassName}"/>
 		<property name="dataSourceProperties">
 			<props>
 				<prop key="user">${jdbc.user}</prop>
@@ -27,15 +27,15 @@
 
 	<!-- HikariCP configuration -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
-		<constructor-arg ref="hikariConfig" />
+		<constructor-arg ref="hikariConfig"/>
 	</bean>
 
 	<!-- ==============================   HIBERNATE CONFIG   ============================= -->
 
 	<bean id="sessionFactory"
 		  class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="hr.tvz.foodie.core.model" />
+		<property name="dataSource" ref="dataSource"/>
+		<property name="packagesToScan" value="hr.tvz.foodie.core.model"/>
 		<property name="hibernateProperties">
 			<value>
 				hibernate.format_sql=false
@@ -49,16 +49,16 @@
 	<!-- ==============================   TRANSACTION CONFIG   ============================= -->
 
 	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="dataSource" ref="dataSource"/>
+		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
 	<!-- Transakcije nad servisima su definirane anotacijama -->
-	<tx:annotation-driven transaction-manager="transactionManager" />
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 
 	<!-- ==============================   DAO & SERVICES   ============================= -->
 
 	<!-- Servisi su definirani anotacijama -->
-	<context:component-scan base-package="hr.tvz.foodie.core.dao, hr.tvz.foodie.core.service" />
+	<context:component-scan base-package="hr.tvz.foodie.core.dao, hr.tvz.foodie.core.service"/>
 
 </beans>

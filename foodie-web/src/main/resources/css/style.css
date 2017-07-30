@@ -112,6 +112,14 @@ h4.vision {
     margin: 1em 0;
 }
 
+.frame {
+    height: 170px; /* equals max image height */
+    width: 250px;
+    white-space: nowrap;
+    text-align: center;
+    margin: 0 auto;
+}
+
 .helper {
     display: inline-block;
     height: 100%;
@@ -123,4 +131,23 @@ h4.vision {
     vertical-align: middle;
     max-height: 170px;
     max-width: 250px;
+}
+
+.frame-read-recipe {
+    max-height: 400px; /* equals max image height */
+    max-width: 600px;
+    white-space: nowrap;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.read-recipe-image {
+    background: #3A6F9A;
+    vertical-align: middle;
+    max-height: 400px;
+    max-width: 600px;
+}
+
+.display-none {
+    display: none !important;
 }

@@ -14,24 +14,24 @@ import java.util.List;
 
 @Controller
 public class MyMenu {
-	
+
 	@Autowired
 	private RecipeService recipeService;
 
-	@RequestMapping(value="myMenu", method = RequestMethod.GET)
-	public String newRecipe(Model model, HttpServletRequest request) {
-		
-	  User user = (User)request.getSession().getAttribute("user")	;
+	@RequestMapping(value = "myMenu", method = RequestMethod.GET)
+	public String getMyMenu(Model model, HttpServletRequest request) {
 
-	  if (user == null) {
-	  	return "home";
-	  }
-	  
-	  List<Recipe> recipes = recipeService.getUserRecipes(user.getId());
-	  
-	  model.addAttribute("recipesList", recipes);
-	      
-      return "myMenu";
-   }
-	
+		User user = (User) request.getSession().getAttribute("user");
+
+		if (user == null) {
+			return "home";
+		}
+
+		List<Recipe> recipes = recipeService.getRecommendedRecipes(user);
+
+		model.addAttribute("recipesList", recipes);
+
+		return "myMenu";
+	}
+
 }

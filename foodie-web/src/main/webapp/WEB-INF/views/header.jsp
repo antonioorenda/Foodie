@@ -16,6 +16,7 @@
                     <% String username = (String)session.getAttribute("username"); %>
                     <% if(username != null){ %>
                          <li><a href="${pageContext.request.contextPath}/myMenu">My Menu</a></li>
+                        <li><a href="${pageContext.request.contextPath}/myRecipes">My Recipes</a></li>
                     <% } %>
 
                     <li><a href="${pageContext.request.contextPath}/newRecipe">New Recipe</a></li>

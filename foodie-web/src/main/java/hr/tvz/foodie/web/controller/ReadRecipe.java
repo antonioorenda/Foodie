@@ -29,7 +29,7 @@ public class ReadRecipe {
 	  recipeService.saveOrUpdateRecipe(recipe);
 	  
 	  model.addAttribute("recipe", recipe);
-	      
+
       return "readRecipe";
    }
 	

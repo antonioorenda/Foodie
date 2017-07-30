@@ -15,8 +15,8 @@
 		<appender-ref ref="CONSOLE" />
 	</root>
 
-	<logger level="DEBUG" name="hr.tvz" />
-	<logger level="DEBUG" name="org.hibernate" />
+	<logger level="DEBUG" name="hr.tvz.foodie" />
+	<logger level="INFO" name="org.hibernate" />
 	<logger level="INFO"  name="org.springframework" />
 
 	<!-- Stavljaju se na warn kako ne bi ispisivali beskorisne info poruke: -->

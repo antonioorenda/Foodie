@@ -1,6 +1,7 @@
 package hr.tvz.foodie.core.service;
 
 import hr.tvz.foodie.core.model.Recipe;
+import hr.tvz.foodie.core.model.User;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ public interface RecipeService {
 
 	Recipe saveOrUpdateRecipe(Recipe recipe);
 
-	List<Recipe> getUserRecipes(Long userId);
+	List<Recipe> getRecommendedRecipes(User user);
+
+	List<Recipe> getUserRecipes(User user);
 
 }

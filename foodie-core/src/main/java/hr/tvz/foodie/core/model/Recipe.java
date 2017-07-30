@@ -1,7 +1,11 @@
 package hr.tvz.foodie.core.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -18,6 +22,7 @@ public class Recipe implements Serializable {
 	private User user;
 	private byte[] image;
 	private String imageBase64;
+	private Date uploadDate;
 
 	private List<Ingredient> ingredients;
 	private List<Stage> stages;
@@ -92,7 +97,8 @@ public class Recipe implements Serializable {
 		this.skillLevel = skillLevel;
 	}
 
-	@ManyToMany(targetEntity = Ingredient.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(targetEntity = Ingredient.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(name = "IO.ReceptSastojak", joinColumns = {
 			@JoinColumn(name = "IdRecept", nullable = false)}, inverseJoinColumns = {
 			@JoinColumn(name = "IdSastojak", nullable = false)})
@@ -104,7 +110,8 @@ public class Recipe implements Serializable {
 		this.ingredients = ingredients;
 	}
 
-	@ManyToMany(targetEntity = Stage.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(targetEntity = Stage.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(name = "IO.ReceptFaza", joinColumns = {
 			@JoinColumn(name = "IdRecept", nullable = false)}, inverseJoinColumns = {
 			@JoinColumn(name = "IdFaza", nullable = false)})
@@ -142,6 +149,16 @@ public class Recipe implements Serializable {
 
 	public void setImage(byte[] image) {
 		this.image = image;
+	}
+
+	@Column(name = "VrijemeUmetanja")
+	@Temporal(TemporalType.DATE)
+	public Date getUploadDate() {
+		return uploadDate;
+	}
+
+	public void setUploadDate(Date uploadDate) {
+		this.uploadDate = uploadDate;
 	}
 
 	@Transient

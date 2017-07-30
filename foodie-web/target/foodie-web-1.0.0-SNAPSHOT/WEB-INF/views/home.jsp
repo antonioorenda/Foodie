@@ -49,11 +49,12 @@
                         <span class="helper"></span>
 
                         <c:if test="${recipe.imageBase64 != null}">
-                            <img class="recipe-image" src="data:image/*;base64,${recipe.imageBase64}" />
+                            <img class="recipe-image" src="data:image/*;base64,${recipe.imageBase64}"/>
                         </c:if>
 
                         <c:if test="${recipe.imageBase64 == null}">
-                            <img class="recipe-image" src="${pageContext.request.contextPath}/resources/images/pizza.jpg" />
+                            <img class="recipe-image"
+                                 src="${pageContext.request.contextPath}/resources/images/pizza.jpg"/>
                         </c:if>
 
                     </div>

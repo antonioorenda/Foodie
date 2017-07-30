@@ -40,7 +40,7 @@
     <div class="row">
 
         <c:if test="${not empty recipeAddedSuccessfully}">
-            <div class="status alert alert-success" id="displaySuccess">Uploading new recipe sucessful!</div>
+            <div class="status alert alert-success" id="displaySuccess">Uploading new recipe successful!</div>
         </c:if>
 
         <form:form class="form-horizontal" action="saveNewRecipe" method="POST" modelAttribute="recipe"
@@ -80,9 +80,9 @@
                     <select class="form-control" name="skillLevel" id="skillLevel">
                         <option selected="selected" disabled="disabled" style="display: none;">Choose Skill Level
                         </option>
-                        <option value="easy">Easy</option>
-                        <option value="intermediate">Intermediate</option>
-                        <option value="advanced">Advanced</option>
+                        <option value="Easy">Easy</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
                     </select>
                 </div>
 
@@ -109,9 +109,11 @@
                 <div class="col-xs-12 col-md-2 col-lg-2">
                     <input type="number" class="form-control" name="amount" id="amount" placeholder="Amount (g)">
                 </div>
-                <div class="col-xs-12 col-md-2 col-lg-2">
+                <div class="col-xs-12 col-md-2 col-lg-2" style="display: inline-flex;">
                     <img class="img-responsive" id="add_ingredients" style="cursor: pointer;" alt="Add more ingredients"
                          src="${pageContext.request.contextPath}/resources/images/add.png">
+                    <img class="img-responsive display-none subtract_ingredient" style="cursor: pointer;"
+                         alt="Remove ingredient" src="${pageContext.request.contextPath}/resources/images/minus.png">
                 </div>
 
             </div>
@@ -123,9 +125,11 @@
                     <textarea class="form-control" name="stages" id="stages" rows="3" cols=""
                               placeholder="Stage 1. description"></textarea>
                 </div>
-                <div class="col-xs-12 col-md-2 col-lg-2">
+                <div class="col-xs-12 col-md-2 col-lg-2" style="display: inline-flex;">
                     <img class="img-responsive" id="add_stages" style="cursor: pointer;" alt="Add more stages"
                          src="${pageContext.request.contextPath}/resources/images/add.png">
+                    <img class="img-responsive display-none subtract_stage" style="cursor: pointer;" alt="Remove stage"
+                         src="${pageContext.request.contextPath}/resources/images/minus.png">
                 </div>
 
             </div>
@@ -142,7 +146,7 @@
             <div class="form-group ">
                 <br/>
                 <!-- <button type="button" class="btn btn-success btn-lg col-lg-offset-1">Preview</button> -->
-                <button type="submit" class="btn btn-success btn-lg" id="saveButton">Save</button>
+                <button type="submit" class="btn btn-success btn-block" id="saveButton">Save</button>
 
             </div>
 
@@ -166,7 +170,7 @@
 
 <script>
     $(".nav").find('li').removeClass('active');
-    $($(".nav").find('li')[2]).addClass("active");
+    $($(".nav").find('li')[3]).addClass("active");
 
     var loggedIn = <%= (Boolean)session.getAttribute("adminuser") %>;
 

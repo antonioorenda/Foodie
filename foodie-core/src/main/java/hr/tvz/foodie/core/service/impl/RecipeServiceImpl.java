@@ -2,6 +2,7 @@ package hr.tvz.foodie.core.service.impl;
 
 import hr.tvz.foodie.core.dao.RecipeDao;
 import hr.tvz.foodie.core.model.Recipe;
+import hr.tvz.foodie.core.model.User;
 import hr.tvz.foodie.core.service.RecipeService;
 import hr.tvz.foodie.core.util.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,14 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Override
 	public Recipe getRecipeById(Long id) {
-		return recipeDao.findById(id);
+		Recipe recipe = recipeDao.findById(id);
+
+		if (recipe.getImage() != null) {
+			String base64Encoded = ImageUtil.getImageBase64(recipe.getImage());
+			recipe.setImageBase64(base64Encoded);
+		}
+
+		return recipe;
 	}
 
 	@Override
@@ -45,9 +53,25 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-	public List<Recipe> getUserRecipes(Long userId) {
+	public List<Recipe> getRecommendedRecipes(User user) {
 
-		List<Recipe> userRecipes = recipeDao.getUserRecipes(userId);
+		List<Recipe> recommendedRecipes = recipeDao.getRecommendedRecipes(user.getId());
+
+		recommendedRecipes.forEach(recipe -> {
+			if (recipe.getImage() == null) {
+				return;
+			}
+
+			String base64Encoded = ImageUtil.getImageBase64(recipe.getImage());
+			recipe.setImageBase64(base64Encoded);
+		});
+
+		return recommendedRecipes;
+	}
+
+	@Override
+	public List<Recipe> getUserRecipes(User user) {
+		List<Recipe> userRecipes = recipeDao.getUserRecipes(user);
 
 		userRecipes.forEach(recipe -> {
 			if (recipe.getImage() == null) {
