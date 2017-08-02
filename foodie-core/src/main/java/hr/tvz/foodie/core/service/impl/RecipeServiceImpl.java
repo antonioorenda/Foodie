@@ -85,4 +85,21 @@ public class RecipeServiceImpl implements RecipeService {
 		return userRecipes;
 	}
 
+	@Override
+	public Recipe mergeRecipes(Recipe oldRecipe, Recipe newRecipe) {
+		oldRecipe.setTitle(newRecipe.getTitle());
+		oldRecipe.setDescription(newRecipe.getDescription());
+		oldRecipe.setFoodType(newRecipe.getFoodType());
+		oldRecipe.setMakingTime(newRecipe.getMakingTime());
+		oldRecipe.setSkillLevel(newRecipe.getSkillLevel());
+		oldRecipe.setIngredients(newRecipe.getIngredients());
+		oldRecipe.setStages(newRecipe.getStages());
+
+		if (newRecipe.getImage() != null) {
+			oldRecipe.setImage(newRecipe.getImage());
+		}
+
+		return oldRecipe;
+	}
+
 }

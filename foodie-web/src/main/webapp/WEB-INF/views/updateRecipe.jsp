@@ -39,11 +39,11 @@
 
     <div class="row">
 
-        <c:if test="${not empty recipeAddedSuccessfully}">
-            <div class="status alert alert-success" id="displaySuccess">Uploading new recipe successful!</div>
+        <c:if test="${not empty recipeUpdatedSuccessfully}">
+            <div class="status alert alert-success" id="displaySuccess">Updating recipe successful!</div>
         </c:if>
 
-        <form:form class="form-horizontal" action="/foodie/updateRecipe" method="POST" modelAttribute="recipe"
+        <form:form class="form-horizontal" action="/foodie/updateRecipe/${recipe.id}" method="POST" modelAttribute="recipe"
                    id="saveRecipeForm" enctype="multipart/form-data">
 
             <div class="form-group">
@@ -56,7 +56,7 @@
 
                 <label for="foodType" class="col-xs-12 col-md-2 col-lg-2 control-label">Food Type</label>
                 <div class="col-xs-12 col-md-4 col-lg-4">
-                    <form:select class="form-control" id="foodType" name="foodType" path="foodType.id">
+                    <form:select class="form-control" id="foodType" name="foodType" path="foodType">
                         <form:option selected="selected" disabled="disabled" style="display: none;" value="0"
                                      label="Choose Food Type"/>
                         <form:options items="${foodTypes}" itemValue="id" itemLabel="title"/>
@@ -100,8 +100,18 @@
 
                 <div class="form-group ingredients">
 
-                    <label for="ingredients"
-                           class="col-xs-12 col-md-2 col-lg-2 control-label label1">Ingredients</label>
+
+
+                    <c:if test="${i.index == 0}">
+                        <label for="ingredients"
+                               class="col-xs-12 col-md-2 col-lg-2 control-label label1">Ingredients</label>
+                    </c:if>
+
+                    <c:if test="${i.index != 0}">
+                        <label for="ingredients"
+                               class="col-xs-12 col-md-2 col-lg-2 control-label label1"></label>
+                    </c:if>
+
                     <div class="col-xs-12 col-md-4 col-lg-4">
 
                         <form:input type="text" class="form-control input1" name="ingredients" id="ingredients"
@@ -143,10 +153,17 @@
 
                 <div class="form-group stages">
 
-                    <label for="stages" class="col-xs-12 col-md-2 col-lg-2 control-label label2">Stages</label>
+                    <c:if test="${i.index == 0}">
+                        <label for="stages" class="col-xs-12 col-md-2 col-lg-2 control-label label2">Stages</label>
+                    </c:if>
+
+                    <c:if test="${i.index != 0}">
+                        <label for="stages" class="col-xs-12 col-md-2 col-lg-2 control-label label2"></label>
+                    </c:if>
+
                     <div class="col-xs-12 col-md-4 col-lg-4">
 
-                            <form:textarea class="form-control" name="stages" id="stages" rows="3"
+                            <form:textarea class="form-control stage" name="stages" id="stages" rows="3"
                                            path="stages[${i.index}].stage"
                                            placeholder="Stage 1. description" title="${stage.stage}"/>
 

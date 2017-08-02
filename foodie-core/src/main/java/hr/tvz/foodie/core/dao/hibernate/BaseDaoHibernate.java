@@ -10,7 +10,6 @@ public class BaseDaoHibernate<E, ID> extends DaoHibernate implements BaseDao<E, 
 	private Class<E> entityClass;
 
 	public BaseDaoHibernate() {
-		// Dohvaća klasu preko generic tipa
 		ParameterizedType pt = (ParameterizedType) getClass().getGenericSuperclass();
 		entityClass = (Class<E>) pt.getActualTypeArguments()[0];
 	}

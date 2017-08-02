@@ -33,7 +33,7 @@ public class Stage implements Serializable {
 	}
 
 	public void setStage(String stage) {
-		this.stage = stage;
+		this.stage = stage.trim();
 	}
 
 	@Override

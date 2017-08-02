@@ -20,4 +20,6 @@ public interface RecipeService {
 
 	List<Recipe> getUserRecipes(User user);
 
+	Recipe mergeRecipes(Recipe oldRecipe, Recipe newRecipe);
+
 }

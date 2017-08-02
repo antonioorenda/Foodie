@@ -57,7 +57,7 @@ public class Recipe implements Serializable {
 	}
 
 	public void setTitle(String title) {
-		this.title = title;
+		this.title = title.trim();
 	}
 
 	@Column(name = "Opis")
@@ -66,7 +66,7 @@ public class Recipe implements Serializable {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.description = description.trim();
 	}
 
 	@ManyToOne(targetEntity = FoodType.class)
@@ -94,7 +94,7 @@ public class Recipe implements Serializable {
 	}
 
 	public void setSkillLevel(String skillLevel) {
-		this.skillLevel = skillLevel;
+		this.skillLevel = skillLevel.trim();
 	}
 
 	@ManyToMany(targetEntity = Ingredient.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)

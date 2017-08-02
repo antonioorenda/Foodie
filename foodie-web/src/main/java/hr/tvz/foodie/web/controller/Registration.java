@@ -40,7 +40,8 @@ public class Registration {
 		
 		return "redirect:home";
 	}
-	
+
+	// TODO kod logina poruka ako ne postoji korisnik ili ako je krivo korisnicko ili pass
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String getUser(@ModelAttribute("User") User user, HttpServletRequest request) throws Exception {
 		

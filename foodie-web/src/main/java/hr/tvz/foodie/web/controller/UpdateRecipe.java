@@ -34,24 +34,27 @@ public class UpdateRecipe {
 		return "updateRecipe";
 	}
 
-	@RequestMapping(value = "updateRecipe", method = RequestMethod.POST)
-	public String updateRecipe(Model model, @ModelAttribute("recipe") Recipe recipe, @RequestParam("file")
-			MultipartFile file) {
+	@RequestMapping(value = "updateRecipe/{id}", method = RequestMethod.POST)
+	public String updateRecipe(@PathVariable("id") Long id, Model model, @ModelAttribute("recipe") Recipe
+			updatedRecipe, @RequestParam("file") MultipartFile file) {
 
-		FoodType foodType = foodieService.getFoodTypeById(recipe.getFoodType().getId());
-		recipe.setFoodType(foodType);
+		Recipe oldRecipe = recipeService.getRecipeById(id);
 
-		if (file != null) {
+		FoodType foodType = foodieService.getFoodTypeById(updatedRecipe.getFoodType().getId());
+		updatedRecipe.setFoodType(foodType);
+
+		if (!file.isEmpty()) {
 			try {
-				recipe.setImage(file.getBytes());
+				updatedRecipe.setImage(file.getBytes());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 
-		recipeService.saveOrUpdateRecipe(recipe);
+		updatedRecipe = recipeService.mergeRecipes(oldRecipe, updatedRecipe);
+		recipeService.saveOrUpdateRecipe(updatedRecipe);
 
-		model.addAttribute("recipeAddedSuccessfully", true);
+		model.addAttribute("recipeUpdatedSuccessfully", true);
 
 		return "updateRecipe";
 	}

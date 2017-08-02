@@ -18,6 +18,11 @@ $(document).on("click", "#add_ingredients", function () {
 
     $(".label1").last().text("");
 
+    var stage_count = $(".ingredients").find('#ingredients').size() - 1;
+
+    $(".ingredients").last().find('#ingredients').first().attr("name", "ingredients[" + stage_count + "].title");
+    $(".ingredients").last().find('#amount').first().attr("name", "ingredients[" + stage_count + "].amount");
+
     $(".subtract_ingredient").removeClass("display-none");
     $(".subtract_ingredient").last().addClass("display-none");
 });
@@ -41,6 +46,8 @@ $(document).on("click", "#add_allergens", function () {
 
     $(".allergens").last().find('input').first().attr("placeholder", "Allergen  " + allergen_num);
 
+    $(".allergens").last().find('#allergens').first().attr("value", "");
+
     $(".subtract_allergen").removeClass("display-none");
     $(".subtract_allergen").last().addClass("display-none");
 });
@@ -63,6 +70,12 @@ $(document).on("click", "#add_stages", function () {
     $(".stages").last().after(stage_form);
 
     $(".stages").last().find("textarea").attr("placeholder", "Stage " + stage_num + ". description");
+
+    $(".stages").last().find('.stage').first().val("");
+
+    var stage_count = $(".stages").find('.stage').size() - 1;
+
+    $(".stages").last().find('.stage').first().attr("name", "stages[" + stage_count + "].stage");
 
     $(".label2").last().text("");
 
