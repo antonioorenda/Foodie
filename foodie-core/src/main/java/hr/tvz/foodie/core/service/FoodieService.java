@@ -19,6 +19,8 @@ public interface FoodieService {
 
 	User saveOrUpdateUser(User user);
 
-	List<User> fetchAllUsers();
+	User fetchUserByUsernameAndPassword(User user);
+
+	User fetchUserByUsername(User user);
 
 }

@@ -57,8 +57,13 @@ public class FoodieServiceImpl implements FoodieService {
 	}
 
 	@Override
-	public List<User> fetchAllUsers() {
-		return userDao.findAll();
+	public User fetchUserByUsernameAndPassword(User user) {
+		return userDao.findByUsernameAndPassword(user);
+	}
+
+	@Override
+	public User fetchUserByUsername(User user) {
+		return userDao.findByUsername(user);
 	}
 
 }

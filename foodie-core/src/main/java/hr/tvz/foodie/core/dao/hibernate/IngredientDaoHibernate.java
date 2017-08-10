@@ -5,5 +5,4 @@ import hr.tvz.foodie.core.model.Ingredient;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class IngredientDaoHibernate extends  BaseDaoHibernate<Ingredient, Long> implements IngredientDao {
-}
+public class IngredientDaoHibernate extends  BaseDaoHibernate<Ingredient, Long> implements IngredientDao {}

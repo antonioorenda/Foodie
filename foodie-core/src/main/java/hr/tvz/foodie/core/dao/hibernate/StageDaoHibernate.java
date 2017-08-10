@@ -5,5 +5,4 @@ import hr.tvz.foodie.core.model.Stage;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class StageDaoHibernate extends BaseDaoHibernate<Stage, Long> implements StageDao {
-}
+public class StageDaoHibernate extends BaseDaoHibernate<Stage, Long> implements StageDao {}

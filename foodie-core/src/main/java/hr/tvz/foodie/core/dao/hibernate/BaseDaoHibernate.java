@@ -13,17 +13,18 @@ public class BaseDaoHibernate<E, ID> extends DaoHibernate implements BaseDao<E, 
 		ParameterizedType pt = (ParameterizedType) getClass().getGenericSuperclass();
 		entityClass = (Class<E>) pt.getActualTypeArguments()[0];
 	}
+
 	@Override
 	public E saveOrUpdate(E entity) {
 		Object identifier = getCurrentSession().getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(entity);
 		if (identifier == null) {
 			getCurrentSession().persist(entity);
-		}
-		else {
-			entity = (E)getCurrentSession().merge(entity);
+		} else {
+			entity = (E) getCurrentSession().merge(entity);
 		}
 		return entity;
 	}
+
 	@Override
 	public E findById(ID id) {
 		return getCurrentSession().find(entityClass, id);

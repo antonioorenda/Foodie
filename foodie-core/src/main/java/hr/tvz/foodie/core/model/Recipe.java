@@ -2,8 +2,11 @@ package hr.tvz.foodie.core.model;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -51,6 +54,7 @@ public class Recipe implements Serializable {
 		this.id = id;
 	}
 
+	@NotBlank
 	@Column(name = "Naziv")
 	public String getTitle() {
 		return title;
@@ -60,6 +64,7 @@ public class Recipe implements Serializable {
 		this.title = title.trim();
 	}
 
+	@NotBlank
 	@Column(name = "Opis")
 	public String getDescription() {
 		return description;
@@ -69,6 +74,7 @@ public class Recipe implements Serializable {
 		this.description = description.trim();
 	}
 
+	@NotNull
 	@ManyToOne(targetEntity = FoodType.class)
 	@JoinColumn(name = "IdTipKuhinje")
 	public FoodType getFoodType() {
@@ -79,6 +85,7 @@ public class Recipe implements Serializable {
 		this.foodType = foodType;
 	}
 
+	@NotNull
 	@Column(name = "VrijemePripreme")
 	public int getMakingTime() {
 		return makingTime;
@@ -88,6 +95,7 @@ public class Recipe implements Serializable {
 		this.makingTime = makingTime;
 	}
 
+	@NotBlank
 	@Column(name = "PotrebnaVjestina")
 	public String getSkillLevel() {
 		return skillLevel;
@@ -97,6 +105,7 @@ public class Recipe implements Serializable {
 		this.skillLevel = skillLevel.trim();
 	}
 
+	@NotEmpty
 	@ManyToMany(targetEntity = Ingredient.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(name = "IO.ReceptSastojak", joinColumns = {
@@ -110,6 +119,7 @@ public class Recipe implements Serializable {
 		this.ingredients = ingredients;
 	}
 
+	@NotEmpty
 	@ManyToMany(targetEntity = Stage.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@Fetch(value = FetchMode.SUBSELECT)
 	@JoinTable(name = "IO.ReceptFaza", joinColumns = {

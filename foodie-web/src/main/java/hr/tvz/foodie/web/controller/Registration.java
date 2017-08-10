@@ -5,86 +5,104 @@ import hr.tvz.foodie.core.service.FoodieService;
 import hr.tvz.foodie.core.util.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 public class Registration {
-	
+
 	@Autowired
 	private FoodieService foodieService;
 
 	@RequestMapping(value = "registration", method = RequestMethod.GET)
 	public String registration() {
-		 
-		return "registration"; 
+		return "registration";
 	}
-	
+
 	@RequestMapping(value = "registration", method = RequestMethod.POST)
-	public String saveUser(@ModelAttribute("User") User user, HttpServletRequest request) throws Exception {
-		
+	public String saveUser(Model model, @Valid @ModelAttribute("User") User user, BindingResult bindingResult,
+						   HttpServletRequest request) {
+
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("registrationError", true);
+
+			return "registration";
+		}
+
+		User foundUser = foodieService.fetchUserByUsername(user);
+
+		if (foundUser != null) {
+			model.addAttribute("usernameExists", true);
+
+			return "registration";
+		}
+
 		String password = PasswordUtil.hashPassword(user.getPassword());
+
 		user.setPassword(password);
 		user.setDateRegistered(new Date());
 		user.setIsAdminUser(false);
 
 		request.getSession().setAttribute("user", user);
 		request.getSession().setAttribute("username", user.getUsername());
-		
+
 		foodieService.saveOrUpdateUser(user);
-		
+
+		model.addAttribute("registrationError", false);
+
+		return "home";
+	}
+
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public String getUser(Model model, @ModelAttribute("User") User user, HttpServletRequest request) {
+
+		String password = PasswordUtil.hashPassword(user.getPassword());
+		user.setPassword(password);
+
+		User foundUser = foodieService.fetchUserByUsernameAndPassword(user);
+
+		String page = getPage(request);
+
+		if (foundUser == null) {
+			model.addAttribute("loginError", true);
+
+			return page;
+		}
+
+		request.getSession().setAttribute("user", foundUser);
+		request.getSession().setAttribute("username", foundUser.getUsername());
+
+		if (foundUser.getIsAdminUser()) {
+			request.getSession().setAttribute("adminUser", true);
+		}
+
+		return "redirect:" + page;
+	}
+
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request) throws Exception {
+		request.getSession().removeAttribute("username");
+		request.getSession().setAttribute("adminUser", false);
+
 		return "redirect:home";
 	}
 
-	// TODO kod logina poruka ako ne postoji korisnik ili ako je krivo korisnicko ili pass
-	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String getUser(@ModelAttribute("User") User user, HttpServletRequest request) throws Exception {
-		
-		String password = PasswordUtil.hashPassword(user.getPassword());
-		user.setPassword(password);
-		
-		List<User> users = foodieService.fetchAllUsers();
-		
-		int userCount = 0;
-		
-		for (User existingUser : users) {
-			if(existingUser.getPassword().trim().equals(user.getPassword()) && existingUser.getUsername().trim().equals(user.getUsername())){
-				userCount++;
-				user = existingUser;
-			}
-		}
-				
-		if(userCount == 1){
-			request.getSession().setAttribute("user", user);
-			request.getSession().setAttribute("username", user.getUsername());
-			
-			if(user.getIsAdminUser()){
-				request.getSession().setAttribute("adminuser", true);
-			}
-		}
-		
+	public String getPage(HttpServletRequest request) {
 		String referrer = request.getHeader("referer");
 		String[] parts = referrer.split("/");
-		
-		if(parts[parts.length - 1].equals("foodie")){
-			return "redirect:/";
+
+		if (parts[parts.length - 1].equals("foodie") || parts[parts.length - 1].equals("login")) {
+			return "home";
 		}
-		
-		return "redirect:" + parts[parts.length - 1];
+
+		return parts[parts.length - 1];
 	}
-	
-	@RequestMapping(value = "logout", method = RequestMethod.GET)
-	public String logout(HttpServletRequest request) throws Exception {
-	
-		request.getSession().removeAttribute("username");
-		request.getSession().setAttribute("adminuser", false);
-		
-		return "redirect:home";
-	}
-	
+
 }

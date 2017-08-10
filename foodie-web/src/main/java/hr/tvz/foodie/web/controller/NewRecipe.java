@@ -8,6 +8,7 @@ import hr.tvz.foodie.core.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -38,8 +40,15 @@ public class NewRecipe {
 	}
 
 	@RequestMapping(value = "saveNewRecipe", method = RequestMethod.POST)
-	public String saveRecipe(Model model, @ModelAttribute("recipe") Recipe recipe, @RequestParam("amount")
-			List<String> amount, @RequestParam("file") MultipartFile file, HttpServletRequest request) {
+	public String saveRecipe(Model model, @Valid @ModelAttribute("recipe") Recipe recipe, BindingResult bindingResult,
+							 @RequestParam("amount") List<String> amount, @RequestParam("file") MultipartFile file,
+							 HttpServletRequest request) {
+
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("recipeHasErrors", true);
+
+			return "newRecipe";
+		}
 
 		for (int i = 0; i < amount.size(); i++) {
 			recipe.getIngredients().get(i).setAmount(Integer.parseInt(amount.get(i)));
@@ -61,6 +70,7 @@ public class NewRecipe {
 		recipeService.saveOrUpdateRecipe(recipe);
 
 		model.addAttribute("recipeAddedSuccessfully", true);
+		model.addAttribute("recipeHasErrors", false);
 
 		return "newRecipe";
 	}

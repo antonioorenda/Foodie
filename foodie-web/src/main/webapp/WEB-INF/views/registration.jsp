@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 
@@ -12,7 +13,6 @@
 <!--Header-->
 <jsp:include page="header.jsp"/>
 <!-- /header -->
-
 
 <section class="title">
     <div class="container">
@@ -34,26 +34,37 @@
 
 
 <section id="registration-page" class="container">
+
+    <c:if test="${registrationError}">
+        <div class="status alert alert-error" id="displayError">Fill out all fields!</div>
+    </c:if>
+
+    <c:if test="${usernameExists}">
+        <div class="status alert alert-error" id="displayError">User with that username already exists! Choose another username.</div>
+    </c:if>
+
     <form class="center" action="registration" method="POST">
         <fieldset class="registration-form">
             <div class="control-group">
                 <!-- Username -->
                 <div class="controls">
-                    <input type="text" id="username" name="username" placeholder="Username" class="input-xlarge">
+                    <input type="text" id="username" required name="username" placeholder="Username"
+                           class="input-xlarge">
                 </div>
             </div>
 
             <div class="control-group">
                 <!-- E-mail -->
                 <div class="controls">
-                    <input type="text" id="email" name="email" placeholder="E-mail" class="input-xlarge">
+                    <input type="email" id="email" required name="email" placeholder="E-mail" class="input-xlarge">
                 </div>
             </div>
 
             <div class="control-group">
                 <!-- Password-->
                 <div class="controls">
-                    <input type="password" id="password" name="password" placeholder="Password" class="input-xlarge">
+                    <input type="password" id="password" required name="password" placeholder="Password"
+                           class="input-xlarge">
                 </div>
             </div>
 
@@ -67,7 +78,8 @@
                 <div style="display: inline-flex;">
                     <img class="" id="add_allergens" style="cursor: pointer;" alt="Add more allergens"
                          src="${pageContext.request.contextPath}/resources/images/add.png">
-                    <img class="img-responsive display-none subtract_allergen" style="cursor: pointer;" alt="Remove allergen"
+                    <img class="img-responsive display-none subtract_allergen" style="cursor: pointer;"
+                         alt="Remove allergen"
                          src="${pageContext.request.contextPath}/resources/images/minus.png">
                 </div>
 

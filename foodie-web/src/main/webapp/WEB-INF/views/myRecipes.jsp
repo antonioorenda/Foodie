@@ -38,8 +38,12 @@
 
         <h1 class="center">My Recipes</h1>
 
-        <% int i = 0;
-            int j = 0; %>
+        <c:if test="${recipesList.size() == 0}">
+            <hr>
+            <p style="font-size: 16px;">You have no recipes.</p>
+        </c:if>
+
+        <% int i = 0; %>
         <c:forEach items="${recipesList}" var="recipe">
 
             <% if (i % 4 == 0 && i > 0) {

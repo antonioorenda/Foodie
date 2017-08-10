@@ -21,7 +21,7 @@
 
                     <li><a href="${pageContext.request.contextPath}/newRecipe">New Recipe</a></li>
 
-                    <% Boolean isAdminUser = (Boolean)session.getAttribute("adminuser"); %>
+                    <% Boolean isAdminUser = (Boolean)session.getAttribute("adminUser"); %>
                     <% if(isAdminUser != null && isAdminUser){ %>
                          <li><a href="statistics">Statistics</a></li>
                     <% } %>
@@ -30,7 +30,7 @@
                     <% if(username == null){ %>
 
                         <li>
-                            <a data-toggle="modal" href="#loginForm">Login&nbsp;&nbsp;&nbsp;<i class="icon-lock"></i></a>
+                            <a data-toggle="modal" href="#loginForm" id="toggleLoginForm">Login&nbsp;&nbsp;&nbsp;<i class="icon-lock"></i></a>
                         </li>
 
                         <li>
@@ -47,8 +47,6 @@
                             <a href="${pageContext.request.contextPath}/logout">Logout&nbsp;&nbsp;&nbsp;<i class="icon-lock"></i></a>
                         </li>
                     <% } %>
-
-
 
                 </ul>
             </div>

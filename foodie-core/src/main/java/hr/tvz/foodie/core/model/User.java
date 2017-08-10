@@ -1,5 +1,7 @@
 package hr.tvz.foodie.core.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -39,6 +41,7 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
+	@NotEmpty
 	@Column(name = "Username", unique = true)
 	public String getUsername() {
 		return username;
@@ -48,6 +51,7 @@ public class User implements Serializable {
 		this.username = username;
 	}
 
+	@NotEmpty
 	@Column(name = "Password")
 	public String getPassword() {
 		return password;
@@ -57,6 +61,7 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
+	@NotEmpty
 	@Column(name = "Email")
 	public String getEmail() {
 		return email;

@@ -22,37 +22,37 @@ public class StatisticsDaoHibernate extends DaoHibernate implements StatisticsDa
 
 	@Override
 	public Long getNumberOfUsers() {
-		Long count = getCurrentSession().createQuery("select count(*) from User", Long.class)
+		Long numberOfUsers = getCurrentSession().createQuery("select count(*) from User", Long.class)
 				.getSingleResult();
 
-		return count;
+		return numberOfUsers;
 	}
 
 	@Override
 	public List<Ingredient> getTopIngredients() {
 		Query query = getCurrentSession().createNativeQuery("EXEC dbo.getTopIngredients").addScalar("Naziv", StringType.INSTANCE);
 
-		List<Ingredient> results = query.getResultList();
+		List<Ingredient> ingredients = query.getResultList();
 
-		return results;
+		return ingredients;
 	}
 
 	@Override
 	public List<Ingredient> getTopAllergens() {
 		Query query = getCurrentSession().createNativeQuery("EXEC dbo.getTopAllergens").addScalar("Naziv", StringType.INSTANCE);;
 
-		List<Ingredient> results = query.getResultList();
+		List<Ingredient> allergens = query.getResultList();
 
-		return results;
+		return allergens;
 	}
 
 	@Override
 	public List<Recipe> getTopRecipes() {
 		Query query = getCurrentSession().createNativeQuery("EXEC dbo.getTopRecipes").addEntity(Recipe.class);
 
-		List<Recipe> results = query.getResultList();
+		List<Recipe> recipes = query.getResultList();
 
-		return results;
+		return recipes;
 	}
 
 }

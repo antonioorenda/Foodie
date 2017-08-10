@@ -43,7 +43,8 @@
             <div class="status alert alert-success" id="displaySuccess">Updating recipe successful!</div>
         </c:if>
 
-        <form:form class="form-horizontal" action="/foodie/updateRecipe/${recipe.id}" method="POST" modelAttribute="recipe"
+        <form:form class="form-horizontal" action="/foodie/updateRecipe/${recipe.id}" method="POST"
+                   modelAttribute="recipe"
                    id="saveRecipeForm" enctype="multipart/form-data">
 
             <div class="form-group">
@@ -51,12 +52,12 @@
                 <label for="title" class="col-xs-12 col-md-2 col-lg-2 control-label">Title</label>
                 <div class="col-md-4 col-lg-4 col-xs-12">
                     <form:input type="text" name="title" class="form-control" id="title" placeholder="Title"
-                                path="title"/>
+                                path="title" required="required"/>
                 </div>
 
                 <label for="foodType" class="col-xs-12 col-md-2 col-lg-2 control-label">Food Type</label>
                 <div class="col-xs-12 col-md-4 col-lg-4">
-                    <form:select class="form-control" id="foodType" name="foodType" path="foodType">
+                    <form:select class="form-control" id="foodType" name="foodType" path="foodType" required="required">
                         <form:option selected="selected" disabled="disabled" style="display: none;" value="0"
                                      label="Choose Food Type"/>
                         <form:options items="${foodTypes}" itemValue="id" itemLabel="title"/>
@@ -70,12 +71,13 @@
                 <label for="makingTime" class="col-xs-12 col-md-2 col-lg-2 control-label">Making Time (min)</label>
                 <div class="col-xs-12 col-md-4 col-lg-4">
                     <form:input type="number" class="form-control" name="makingTime" id="makingTime" path="makingTime"
-                                placeholder="Making Time (min)"/>
+                                placeholder="Making Time (min)" required="required"/>
                 </div>
 
                 <label for="skillLevel" class="col-xs-12 col-md-2 col-lg-2 control-label">Skill Level</label>
                 <div class="col-xs-12 col-sm-4 col-lg-4">
-                    <form:select class="form-control" name="skillLevel" id="skillLevel" path="skillLevel">
+                    <form:select class="form-control" name="skillLevel" id="skillLevel" path="skillLevel"
+                                 required="required">
                         <form:option selected="selected" disabled="disabled" style="display: none;" value="0"
                                      label="Choose Skill Level"/>
                         <form:option value="easy" label="Easy"/>
@@ -91,7 +93,8 @@
                 <label for="description" class="col-xs-12 col-md-2 col-lg-2 control-label">Description</label>
                 <div class="col-xs-12 col-md-10 col-lg-10">
                     <form:textarea style="width: 96%;" class="form-control" name="description" id="description" rows="1"
-                                   cols="" placeholder="Description" path="description"></form:textarea>
+                                   cols="" placeholder="Description" path="description"
+                                   required="required"></form:textarea>
                 </div>
 
             </div>
@@ -99,7 +102,6 @@
             <c:forEach items="${recipe.ingredients}" var="ingredient" varStatus="i">
 
                 <div class="form-group ingredients">
-
 
 
                     <c:if test="${i.index == 0}">
@@ -115,14 +117,15 @@
                     <div class="col-xs-12 col-md-4 col-lg-4">
 
                         <form:input type="text" class="form-control input1" name="ingredients" id="ingredients"
-                                    placeholder="Ingredient 1" path="ingredients[${i.index}].title"/>
+                                    placeholder="Ingredient 1" path="ingredients[${i.index}].title"
+                                    required="required"/>
 
                     </div>
                     <label for="amount" class="col-xs-12 col-md-2 col-lg-2 control-label"></label>
                     <div class="col-xs-12 col-md-2 col-lg-2">
 
                         <form:input type="number" class="form-control" name="amount" id="amount"
-                                    placeholder="Amount (g)" path="ingredients[${i.index}].amount"/>
+                                    placeholder="Amount (g)" path="ingredients[${i.index}].amount" required="required"/>
 
                     </div>
                     <div class="col-xs-12 col-md-2 col-lg-2" style="display: inline-flex;">
@@ -163,9 +166,9 @@
 
                     <div class="col-xs-12 col-md-4 col-lg-4">
 
-                            <form:textarea class="form-control stage" name="stages" id="stages" rows="3"
-                                           path="stages[${i.index}].stage"
-                                           placeholder="Stage 1. description" title="${stage.stage}"/>
+                        <form:textarea class="form-control stage" name="stages" id="stages" rows="3"
+                                       path="stages[${i.index}].stage"
+                                       placeholder="Stage 1. description" title="${stage.stage}" required="required"/>
 
                     </div>
                     <div class="col-xs-12 col-md-2 col-lg-2" style="display: inline-flex;">
@@ -173,7 +176,8 @@
                         <c:if test="${i.index == (recipe.stages.size() - 1)}">
                             <img class="img-responsive" id="add_stages" style="cursor: pointer;" alt="Add more stages"
                                  src="${pageContext.request.contextPath}/resources/images/add.png">
-                            <img class="img-responsive display-none subtract_stage" style="cursor: pointer;" alt="Remove stage"
+                            <img class="img-responsive display-none subtract_stage" style="cursor: pointer;"
+                                 alt="Remove stage"
                                  src="${pageContext.request.contextPath}/resources/images/minus.png">
                         </c:if>
 
@@ -199,9 +203,7 @@
 
             <div class="form-group ">
                 <br/>
-                <!-- <button type="button" class="btn btn-success btn-lg col-lg-offset-1">Preview</button> -->
                 <button type="submit" class="btn btn-success btn-block" id="saveButton">Save</button>
-
             </div>
 
         </form:form>
@@ -225,7 +227,7 @@
 <script>
     $(".nav").find('li').removeClass('active');
 
-    var loggedIn = <%= (Boolean)session.getAttribute("adminuser") %>;
+    var loggedIn = <%= (Boolean)session.getAttribute("adminUser") %>;
 
     if (!loggedIn) {
         $(".nav").find('li').find('a[href="#loginForm"]').click();

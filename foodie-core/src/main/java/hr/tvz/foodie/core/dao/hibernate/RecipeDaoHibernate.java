@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class RecipeDaoHibernate extends  BaseDaoHibernate<Recipe, Long> implements RecipeDao {
+public class RecipeDaoHibernate extends BaseDaoHibernate<Recipe, Long> implements RecipeDao {
 
 	@Override
 	public List<Recipe> getRecommendedRecipes(Long userId) {
@@ -34,7 +34,7 @@ public class RecipeDaoHibernate extends  BaseDaoHibernate<Recipe, Long> implemen
 		criteria.select(root);
 		criteria.where(builder.equal(root.get("user"), user));
 
-		List<Recipe> recipes = getCurrentSession().createQuery( criteria ).getResultList();
+		List<Recipe> recipes = getCurrentSession().createQuery(criteria).getResultList();
 
 		return recipes;
 	}

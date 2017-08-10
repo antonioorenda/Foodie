@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <script src="${pageContext.request.contextPath}/resources/js/vendor/jquery-1.9.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/vendor/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
@@ -41,3 +43,9 @@ $(function() {
 });
 </script>
 <!-- /SL Slider -->
+
+<c:if test="${loginError}">
+    <script type="text/javascript">
+        $(document).ready(function(){ $("#toggleLoginForm").click(); })
+    </script>
+</c:if>

@@ -7,10 +7,10 @@
 
             <!--Contact Form-->
             <div class="span3">
-                <h4>ADDRESS</h4>
+                <h4>CONTACT</h4>
                 <ul class="unstyled address">
                     <li>
-                        <i class="icon-home"></i><strong>Address:</strong> 1032 Wayback Lane, Wantagh <br> NY 11793
+                        <i class="icon-home"></i><strong>Address:</strong> Hecimoviceva 5, Zagreb
                     </li>
                     <li>
                         <i class="icon-envelope"></i>
@@ -18,7 +18,7 @@
                     </li>
                     <li>
                         <i class="icon-phone"></i>
-                        <strong>Toll Free:</strong> 631-409-3105
+                        <strong>Telephone:</strong> 01/734-983
                     </li>
                 </ul>
             </div>
@@ -26,14 +26,13 @@
 
             <!--Important Links-->
             <div id="tweets" class="span3">
-                <h4>OUR COMPANY</h4>
+                <h4>FOODIE</h4>
                 <div>
                     <ul class="arrow">
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Support</a></li>
                         <li><a href="#">Terms of Use</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Blog</a></li>
                     </ul>
                 </div>
             </div>

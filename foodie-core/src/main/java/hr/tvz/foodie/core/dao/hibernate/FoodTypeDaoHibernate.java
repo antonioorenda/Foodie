@@ -5,5 +5,4 @@ import hr.tvz.foodie.core.model.FoodType;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class FoodTypeDaoHibernate extends BaseDaoHibernate<FoodType, Long> implements FoodTypeDao {
-}
+public class FoodTypeDaoHibernate extends BaseDaoHibernate<FoodType, Long> implements FoodTypeDao {}
