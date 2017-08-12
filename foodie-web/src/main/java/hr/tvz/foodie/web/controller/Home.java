@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-/**
- * Created by Antonio on 22.3.2017..
- */
 @Controller
 public class Home {
 

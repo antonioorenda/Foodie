@@ -9,11 +9,11 @@ public class Stage implements Serializable {
 
 	private Long id;
 	private String stage;
-	
+
 	public Stage(String stage) {
 		this.stage = stage;
 	}
-	
+
 	public Stage() {}
 
 	@Id
@@ -33,7 +33,7 @@ public class Stage implements Serializable {
 	}
 
 	public void setStage(String stage) {
-		this.stage = stage.trim();
+		this.stage = stage != null ? stage.trim() : stage;
 	}
 
 	@Override

@@ -27,19 +27,19 @@ public class Statistics {
 		if (userIsAdministrator) {
 			Long numberOfRecipes = statisticsService.getNumberOfRecipes();
 			model.addAttribute("numberOfRecipes", numberOfRecipes);
-			
+
 			Long numberOfUsers = statisticsService.getNumberOfUsers();
 			model.addAttribute("numberOfUsers", numberOfUsers);
-			
+
 			List<Ingredient> topIngredients = statisticsService.getTopIngredients();
 			model.addAttribute("topIngredients", topIngredients.toString().substring(1, topIngredients.toString().length() - 1));
 
 			List<Ingredient> allergenList = statisticsService.getTopAllergens();
 			model.addAttribute("topAllergens", allergenList.toString().substring(1, allergenList.toString().length() - 1));
-			
+
 			List<Recipe> topRecipes = statisticsService.getTopRecipes();
 			model.addAttribute("topRecipes", topRecipes);
-			
+
 			return "statistics";
 		}
 

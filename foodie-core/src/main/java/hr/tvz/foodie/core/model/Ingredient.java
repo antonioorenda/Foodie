@@ -14,7 +14,7 @@ public class Ingredient implements Serializable {
 	public Ingredient(String title) {
 		this.title = title;
 	}
-	
+
 	public Ingredient() {}
 
 	@Id
@@ -43,12 +43,12 @@ public class Ingredient implements Serializable {
 	}
 
 	public void setTitle(String title) {
-		this.title = title.trim();
+		this.title = title != null ? title.trim() : null;
 	}
 
 	@Override
 	public String toString() {
 		return "Ingredient [title=" + title + ", amount=" + amount + "]";
 	}
-	
+
 }

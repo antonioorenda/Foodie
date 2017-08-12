@@ -14,10 +14,10 @@ public class StatisticsDaoHibernate extends DaoHibernate implements StatisticsDa
 
 	@Override
 	public Long getNumberOfRecipes() {
-		Long count = getCurrentSession().createQuery("select count(*) from Recipe", Long.class)
+		Long numberOfRecipes = getCurrentSession().createQuery("select count(*) from Recipe", Long.class)
 				.getSingleResult();
 
-		return count;
+		return numberOfRecipes;
 	}
 
 	@Override
@@ -39,7 +39,8 @@ public class StatisticsDaoHibernate extends DaoHibernate implements StatisticsDa
 
 	@Override
 	public List<Ingredient> getTopAllergens() {
-		Query query = getCurrentSession().createNativeQuery("EXEC dbo.getTopAllergens").addScalar("Naziv", StringType.INSTANCE);;
+		Query query = getCurrentSession().createNativeQuery("EXEC dbo.getTopAllergens").addScalar("Naziv", StringType.INSTANCE);
+		;
 
 		List<Ingredient> allergens = query.getResultList();
 

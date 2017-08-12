@@ -92,7 +92,7 @@ public class User implements Serializable {
 	@ManyToMany(targetEntity = Ingredient.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "IO.KorisnikAlergen", joinColumns = {
 			@JoinColumn(name = "IdKorisnik", nullable = false)}, inverseJoinColumns = {
-			@JoinColumn(name = "IdSastojak", nullable = false) })
+			@JoinColumn(name = "IdSastojak", nullable = false)})
 	public List<Ingredient> getAllergens() {
 		return allergens;
 	}

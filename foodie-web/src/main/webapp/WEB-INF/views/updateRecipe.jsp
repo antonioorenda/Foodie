@@ -39,7 +39,7 @@
 
     <div class="row">
 
-        <c:if test="${not empty recipeUpdatedSuccessfully}">
+        <c:if test="${recipeUpdatedSuccessfully}">
             <div class="status alert alert-success" id="displaySuccess">Updating recipe successful!</div>
         </c:if>
 

@@ -1,7 +1,9 @@
 package hr.tvz.foodie.core.service.impl;
 
 import hr.tvz.foodie.core.dao.RecipeDao;
+import hr.tvz.foodie.core.model.Ingredient;
 import hr.tvz.foodie.core.model.Recipe;
+import hr.tvz.foodie.core.model.Stage;
 import hr.tvz.foodie.core.model.User;
 import hr.tvz.foodie.core.service.RecipeService;
 import hr.tvz.foodie.core.util.ImageUtil;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -87,6 +90,27 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Override
 	public Recipe mergeRecipes(Recipe oldRecipe, Recipe newRecipe) {
+
+		Iterator ingredientIterator = newRecipe.getIngredients().iterator();
+
+		while (ingredientIterator.hasNext()) {
+			Ingredient ingredient = (Ingredient) ingredientIterator.next();
+
+			if (ingredient.getTitle() == null) {
+				ingredientIterator.remove();
+			}
+		}
+
+		Iterator stageIterator = newRecipe.getStages().iterator();
+
+		while (stageIterator.hasNext()) {
+			Stage stage = (Stage) stageIterator.next();
+
+			if (stage.getStage() == null) {
+				stageIterator.remove();
+			}
+		}
+
 		oldRecipe.setTitle(newRecipe.getTitle());
 		oldRecipe.setDescription(newRecipe.getDescription());
 		oldRecipe.setFoodType(newRecipe.getFoodType());

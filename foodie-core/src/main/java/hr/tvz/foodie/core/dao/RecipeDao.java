@@ -5,7 +5,7 @@ import hr.tvz.foodie.core.model.User;
 
 import java.util.List;
 
-public interface RecipeDao extends  BaseDao<Recipe, Long>{
+public interface RecipeDao extends BaseDao<Recipe, Long> {
 
 	List<Recipe> getRecommendedRecipes(Long userId);
 

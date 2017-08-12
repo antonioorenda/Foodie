@@ -5,9 +5,6 @@ import hr.tvz.foodie.core.model.User;
 
 import java.util.List;
 
-/**
- * Created by Antonio on 24.6.2017..
- */
 public interface RecipeService {
 
 	List<Recipe> findAllRecipes();

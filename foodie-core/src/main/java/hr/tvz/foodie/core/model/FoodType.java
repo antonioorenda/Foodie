@@ -40,5 +40,5 @@ public class FoodType implements Serializable {
 	public String toString() {
 		return "FoodType [id=" + id + ", title=" + title + "]";
 	}
-	
+
 }

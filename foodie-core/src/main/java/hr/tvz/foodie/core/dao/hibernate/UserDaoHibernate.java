@@ -15,7 +15,9 @@ public class UserDaoHibernate extends BaseDaoHibernate<User, Long> implements Us
 		User foundUser;
 
 		try {
-			TypedQuery<User> query = getCurrentSession().createQuery("SELECT u FROM User u WHERE u.password = :u_password and u.username = :u_username", User.class);
+			String queryString = "SELECT u FROM User u WHERE u.password = :u_password and u.username = :u_username";
+
+			TypedQuery<User> query = getCurrentSession().createQuery(queryString, User.class);
 			query.setParameter("u_password", user.getPassword());
 			query.setParameter("u_username", user.getUsername());
 
@@ -32,7 +34,9 @@ public class UserDaoHibernate extends BaseDaoHibernate<User, Long> implements Us
 		User foundUser;
 
 		try {
-			TypedQuery<User> query = getCurrentSession().createQuery("SELECT u FROM User u WHERE u.username = :u_username", User.class);
+			String queryString = "SELECT u FROM User u WHERE u.username = :u_username";
+
+			TypedQuery<User> query = getCurrentSession().createQuery(queryString, User.class);
 			query.setParameter("u_username", user.getUsername());
 
 			foundUser = query.getSingleResult();

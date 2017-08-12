@@ -39,11 +39,11 @@
 
     <div class="row">
 
-        <c:if test="${not empty recipeAddedSuccessfully}">
+        <c:if test="${recipeAddedSuccessfully}">
             <div class="status alert alert-success" id="displaySuccess">Uploading new recipe successful!</div>
         </c:if>
 
-        <c:if test="${not empty recipeHasErrors}">
+        <c:if test="${recipeHasErrors}">
             <div class="status alert alert-error" id="displayError">Fill out all fields!</div>
         </c:if>
 
@@ -182,8 +182,6 @@
 
     var loggedIn = <%= (Boolean)session.getAttribute("adminUser") %>;
     var loginError = "${loginError}";
-
-    console.log(loginError);
 
     if (!loggedIn && !loginError) {
         $(".nav").find('li').find('a[href="#loginForm"]').click();

@@ -17,11 +17,13 @@ public class BaseDaoHibernate<E, ID> extends DaoHibernate implements BaseDao<E, 
 	@Override
 	public E saveOrUpdate(E entity) {
 		Object identifier = getCurrentSession().getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(entity);
+
 		if (identifier == null) {
 			getCurrentSession().persist(entity);
 		} else {
 			entity = (E) getCurrentSession().merge(entity);
 		}
+
 		return entity;
 	}
 
