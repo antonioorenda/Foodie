@@ -1,6 +1,7 @@
 package hr.tvz.foodie.core.dao.hibernate;
 
 import hr.tvz.foodie.core.dao.RecipeDao;
+import hr.tvz.foodie.core.model.FoodType;
 import hr.tvz.foodie.core.model.Recipe;
 import hr.tvz.foodie.core.model.User;
 import org.hibernate.query.Query;
@@ -33,6 +34,31 @@ public class RecipeDaoHibernate extends BaseDaoHibernate<Recipe, Long> implement
 		Root<Recipe> root = criteria.from(Recipe.class);
 		criteria.select(root);
 		criteria.where(builder.equal(root.get("user"), user));
+
+		List<Recipe> recipes = getCurrentSession().createQuery(criteria).getResultList();
+
+		return recipes;
+	}
+
+	@Override
+	public List<Recipe> searchRecipes(String title, String skillLevel, FoodType foodType) {
+		CriteriaBuilder builder = getCurrentSession().getCriteriaBuilder();
+
+		CriteriaQuery<Recipe> criteria = builder.createQuery(Recipe.class);
+		Root<Recipe> root = criteria.from(Recipe.class);
+		criteria.select(root);
+
+		if (!title.equals("")) {
+			criteria.where(builder.like(root.get("title"), "%" + title + "%"));
+		}
+
+		if(skillLevel != null) {
+			criteria.where(builder.equal(root.get("skillLevel"), skillLevel));
+		}
+
+		if (foodType != null) {
+			criteria.where(builder.equal(root.get("foodType"), foodType));
+		}
 
 		List<Recipe> recipes = getCurrentSession().createQuery(criteria).getResultList();
 

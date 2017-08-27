@@ -1,10 +1,7 @@
 package hr.tvz.foodie.core.service.impl;
 
 import hr.tvz.foodie.core.dao.RecipeDao;
-import hr.tvz.foodie.core.model.Ingredient;
-import hr.tvz.foodie.core.model.Recipe;
-import hr.tvz.foodie.core.model.Stage;
-import hr.tvz.foodie.core.model.User;
+import hr.tvz.foodie.core.model.*;
 import hr.tvz.foodie.core.service.RecipeService;
 import hr.tvz.foodie.core.util.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,6 +121,23 @@ public class RecipeServiceImpl implements RecipeService {
 		}
 
 		return oldRecipe;
+	}
+
+	@Override
+	public List<Recipe> searchRecipes(String title, String skillLevel, FoodType foodType) {
+
+		List<Recipe> searchRecipes = recipeDao.searchRecipes(title, skillLevel, foodType);
+
+		searchRecipes.forEach(recipe -> {
+			if (recipe.getImage() == null) {
+				return;
+			}
+
+			String base64Encoded = ImageUtil.getImageBase64(recipe.getImage());
+			recipe.setImageBase64(base64Encoded);
+		});
+
+		return searchRecipes;
 	}
 
 }

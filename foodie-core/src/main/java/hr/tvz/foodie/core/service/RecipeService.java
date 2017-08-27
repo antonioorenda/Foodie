@@ -1,5 +1,6 @@
 package hr.tvz.foodie.core.service;
 
+import hr.tvz.foodie.core.model.FoodType;
 import hr.tvz.foodie.core.model.Recipe;
 import hr.tvz.foodie.core.model.User;
 
@@ -18,5 +19,7 @@ public interface RecipeService {
 	List<Recipe> getUserRecipes(User user);
 
 	Recipe mergeRecipes(Recipe oldRecipe, Recipe newRecipe);
+
+	List<Recipe> searchRecipes(String title, String skillLevel, FoodType foodType);
 
 }
