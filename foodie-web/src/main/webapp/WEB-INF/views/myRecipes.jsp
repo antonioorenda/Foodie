@@ -28,12 +28,9 @@
         </div>
     </div>
 </section>
-<!-- / .title -->
 
-<!--Services-->
 <section id="clients">
     <div class="container">
-        <!-- Meet the team -->
         <hr>
 
         <h1 class="center">My Recipes</h1>

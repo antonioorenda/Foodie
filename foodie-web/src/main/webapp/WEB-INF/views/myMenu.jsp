@@ -28,19 +28,16 @@
         </div>
     </div>
 </section>
-<!-- / .title -->
 
-<!--Services-->
 <section id="clients">
     <div class="container">
-        <!-- Meet the team -->
         <hr>
 
         <h1 class="center">My Menu</h1>
 
         <hr>
 
-        <form class="form-inline" style="margin-left: 10px;" action="${pageContext.request.contextPath}/myMenu/search">
+        <form class="form-inline" style="margin-left: 10px;" action="${pageContext.request.contextPath}/search">
             <input type="text" name="title" placeholder="Title"/>
 
             <select class="form-control" name="skillLevel" id="skillLevel">
@@ -63,7 +60,7 @@
 
         <% int i = 0;
             int j = 0; %>
-        <c:forEach items="${recipesList}" var="recipe" begin="0" end="11">
+        <c:forEach items="${recipes}" var="recipe" begin="0" end="11">
 
             <% if (i % 4 == 0 && i > 0) {
                 out.print("</div>");
@@ -71,7 +68,7 @@
             <% if (i % 4 == 0) {
                 out.print("<hr><div class='row-fluid'>");
             } %>
-            <div class="span3" onclick="location.href='readRecipe/${recipe.id}';" style="cursor:pointer;">
+            <div class="span3" onclick="location.href='${pageContext.request.contextPath}/readRecipe/${recipe.id}';" style="cursor:pointer;">
                 <div class="box">
                     <div class=frame>
                         <span class="helper"></span>
@@ -97,7 +94,7 @@
 
         </c:forEach>
 
-        <c:if test="${recipesList.size() == 0}">
+        <c:if test="${recipes.size() == 0}">
             <div class="status alert alert-error" id="displayError">No recipe matches your criteria!</div>
         </c:if>
 

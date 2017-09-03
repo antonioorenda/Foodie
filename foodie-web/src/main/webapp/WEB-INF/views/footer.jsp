@@ -1,11 +1,6 @@
 <section id="bottom" class="main">
-    <!--Container-->
     <div class="container">
-
-        <!--row-fluids-->
         <div class="row-fluid">
-
-            <!--Contact Form-->
             <div class="span3">
                 <h4>CONTACT</h4>
                 <ul class="unstyled address">
@@ -22,9 +17,7 @@
                     </li>
                 </ul>
             </div>
-            <!--End Contact Form-->
 
-            <!--Important Links-->
             <div id="tweets" class="span3">
                 <h4>FOODIE</h4>
                 <div>
@@ -37,20 +30,15 @@
                 </div>
             </div>
         </div>
-        <!--/row-fluid-->
     </div>
-    <!--/container-->
-
 </section>
 
-<!--Footer-->
 <footer id="footer">
     <div class="container">
         <div class="row-fluid">
             <div class="span5 cp">
                 &copy; 2017 Foodie
             </div>
-            <!--/Copyright-->
 
             <div class="span6">
                 <ul class="social pull-right">
@@ -66,11 +54,9 @@
             <div class="span1">
                 <a id="gototop" class="gototop pull-right" href="#"><i class="icon-angle-up"></i></a>
             </div>
-            <!--/Goto Top-->
         </div>
     </div>
 </footer>
-<!--/Footer-->
 
 <script type="text/javascript">
     window.addEventListener('focus', function () {

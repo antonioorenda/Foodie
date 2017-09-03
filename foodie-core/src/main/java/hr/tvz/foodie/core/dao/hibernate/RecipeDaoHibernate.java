@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,7 +42,7 @@ public class RecipeDaoHibernate extends BaseDaoHibernate<Recipe, Long> implement
 	}
 
 	@Override
-	public List<Recipe> searchRecipes(String title, String skillLevel, FoodType foodType) {
+	public List<Recipe> searchRecipes(String title, String skillLevel, FoodType foodType, Date dateFrom, Date dateTo) {
 		CriteriaBuilder builder = getCurrentSession().getCriteriaBuilder();
 
 		CriteriaQuery<Recipe> criteria = builder.createQuery(Recipe.class);
@@ -52,12 +53,20 @@ public class RecipeDaoHibernate extends BaseDaoHibernate<Recipe, Long> implement
 			criteria.where(builder.like(root.get("title"), "%" + title + "%"));
 		}
 
-		if(skillLevel != null) {
+		if (skillLevel != null) {
 			criteria.where(builder.equal(root.get("skillLevel"), skillLevel));
 		}
 
 		if (foodType != null) {
 			criteria.where(builder.equal(root.get("foodType"), foodType));
+		}
+
+		if (dateFrom != null) {
+			criteria.where(builder.greaterThanOrEqualTo(root.get("uploadDate"), dateFrom));
+		}
+
+		if (dateTo != null) {
+			criteria.where(builder.lessThanOrEqualTo(root.get("uploadDate"), dateTo));
 		}
 
 		List<Recipe> recipes = getCurrentSession().createQuery(criteria).getResultList();

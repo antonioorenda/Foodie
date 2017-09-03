@@ -7,9 +7,11 @@ import hr.tvz.foodie.core.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
@@ -35,8 +37,15 @@ public class UpdateRecipe {
 	}
 
 	@RequestMapping(value = "updateRecipe/{id}", method = RequestMethod.POST)
-	public String updateRecipe(@PathVariable("id") Long id, Model model, @ModelAttribute("recipe") Recipe
-			updatedRecipe, @RequestParam("file") MultipartFile file) {
+	public String updateRecipe(@PathVariable("id") Long id, Model model, @Valid @ModelAttribute("recipe") Recipe
+			updatedRecipe, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
+
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("recipeHasErrors", true);
+			model.addAttribute("foodTypes", foodieService.getAllFoodTypes());
+
+			return "updateRecipe";
+		}
 
 		Recipe oldRecipe = recipeService.getRecipeById(id);
 
@@ -54,6 +63,7 @@ public class UpdateRecipe {
 		updatedRecipe = recipeService.mergeRecipes(oldRecipe, updatedRecipe);
 		recipeService.saveOrUpdateRecipe(updatedRecipe);
 
+		model.addAttribute("foodTypes", foodieService.getAllFoodTypes());
 		model.addAttribute("recipeUpdatedSuccessfully", true);
 
 		return "updateRecipe";

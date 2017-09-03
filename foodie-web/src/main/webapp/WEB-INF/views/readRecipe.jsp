@@ -29,7 +29,6 @@
         </div>
     </div>
 </section>
-<!-- / .title -->
 
 <div id="about-us" class="container">
 

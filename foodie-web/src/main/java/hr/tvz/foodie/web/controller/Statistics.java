@@ -2,6 +2,7 @@ package hr.tvz.foodie.web.controller;
 
 import hr.tvz.foodie.core.model.Ingredient;
 import hr.tvz.foodie.core.model.Recipe;
+import hr.tvz.foodie.core.service.FoodieService;
 import hr.tvz.foodie.core.service.StatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class Statistics {
 
 	@Autowired
 	private StatisticsService statisticsService;
+
+	@Autowired
+	private FoodieService foodieService;
 
 	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "statistics", method = RequestMethod.GET)
@@ -39,6 +43,8 @@ public class Statistics {
 
 			List<Recipe> topRecipes = statisticsService.getTopRecipes();
 			model.addAttribute("topRecipes", topRecipes);
+
+			model.addAttribute("foodTypes", foodieService.getAllFoodTypes());
 
 			return "statistics";
 		}

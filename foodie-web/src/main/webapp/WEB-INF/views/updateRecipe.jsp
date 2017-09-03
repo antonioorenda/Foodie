@@ -29,7 +29,6 @@
         </div>
     </div>
 </section>
-<!-- / .title -->
 
 <section id="contact-page" class="container main">
 
@@ -41,6 +40,10 @@
 
         <c:if test="${recipeUpdatedSuccessfully}">
             <div class="status alert alert-success" id="displaySuccess">Updating recipe successful!</div>
+        </c:if>
+
+        <c:if test="${recipeHasErrors}">
+            <div class="status alert alert-error" id="displayError">Fill out all fields!</div>
         </c:if>
 
         <form:form class="form-horizontal" action="/foodie/updateRecipe/${recipe.id}" method="POST"
@@ -58,8 +61,8 @@
                 <label for="foodType" class="col-xs-12 col-md-2 col-lg-2 control-label">Food Type</label>
                 <div class="col-xs-12 col-md-4 col-lg-4">
                     <form:select class="form-control" id="foodType" name="foodType" path="foodType" required="required">
-                        <form:option selected="selected" disabled="disabled" style="display: none;" value="0"
-                                     label="Choose Food Type"/>
+                        <option selected="selected" disabled="disabled" style="display: none;" value=""
+                                label="Choose Food Type"/>
                         <form:options items="${foodTypes}" itemValue="id" itemLabel="title"/>
                     </form:select>
                 </div>
@@ -78,8 +81,8 @@
                 <div class="col-xs-12 col-sm-4 col-lg-4">
                     <form:select class="form-control" name="skillLevel" id="skillLevel" path="skillLevel"
                                  required="required">
-                        <form:option selected="selected" disabled="disabled" style="display: none;" value="0"
-                                     label="Choose Skill Level"/>
+                        <option selected="selected" disabled="disabled" style="display: none;" value=""
+                                label="Choose Skill Level"/>
                         <form:option value="easy" label="Easy"/>
                         <form:option value="intermediate" label="Intermediate"/>
                         <form:option value="advanced" label="Advanced"/>

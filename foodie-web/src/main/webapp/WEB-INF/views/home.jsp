@@ -26,17 +26,15 @@
     </h4>
 </div>
 
-<!--Services-->
 <section id="clients">
     <div class="container">
-        <!-- Meet the team -->
         <hr>
 
         <h1 class="center">Today's recommendations</h1>
 
         <hr>
 
-        <form class="form-inline" style="margin-left: 10px;" action="${pageContext.request.contextPath}/home/search">
+        <form class="form-inline" style="margin-left: 10px;" action="${pageContext.request.contextPath}/search">
             <input type="text" name="title" placeholder="Title"/>
 
             <select class="form-control" name="skillLevel" id="skillLevel">
@@ -58,7 +56,7 @@
         </form>
 
         <% int i = 0; %>
-        <c:forEach items="${allRecipes}" var="recipe" begin="0" end="15">
+        <c:forEach items="${recipes}" var="recipe" begin="0" end="11">
 
             <% if (i % 4 == 0 && i > 0) {
                 out.print("</div>");
@@ -92,13 +90,12 @@
 
         </c:forEach>
 
-        <c:if test="${allRecipes.size() == 0}">
+        <c:if test="${recipes.size() == 0}">
             <div class="status alert alert-error" id="displayError">No recipe matches your criteria!</div>
         </c:if>
 
     </div>
 </section>
-<!--/Services-->
 
 <!--  Login form -->
 <jsp:include page="login.jsp"/>

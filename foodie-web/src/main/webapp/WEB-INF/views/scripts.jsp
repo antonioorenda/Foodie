@@ -3,12 +3,10 @@
 <script src="${pageContext.request.contextPath}/resources//js/jquery-1.9.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources//js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-<!-- Required javascript files for Slider -->
 <script src="${pageContext.request.contextPath}/resources/js/jquery.ba-cond.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.slitslider.js"></script>
-<!-- /Required javascript files for Slider -->
-
 <script src="${pageContext.request.contextPath}/resources/js/custom.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.datetimepicker.full.min.js"></script>
 
 <!-- SL Slider -->
 <script type="text/javascript">

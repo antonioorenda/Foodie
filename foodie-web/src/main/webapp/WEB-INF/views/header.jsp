@@ -47,7 +47,6 @@
                             <a href="${pageContext.request.contextPath}/logout">Logout&nbsp;&nbsp;&nbsp;<i class="icon-lock"></i></a>
                         </li>
                     <% } %>
-
                 </ul>
             </div>
         </div>

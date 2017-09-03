@@ -4,6 +4,7 @@ import hr.tvz.foodie.core.model.FoodType;
 import hr.tvz.foodie.core.model.Recipe;
 import hr.tvz.foodie.core.model.User;
 
+import java.util.Date;
 import java.util.List;
 
 public interface RecipeService {
@@ -20,6 +21,6 @@ public interface RecipeService {
 
 	Recipe mergeRecipes(Recipe oldRecipe, Recipe newRecipe);
 
-	List<Recipe> searchRecipes(String title, String skillLevel, FoodType foodType);
+	List<Recipe> searchRecipes(String title, String skillLevel, FoodType foodType, Date dateFrom, Date dateTo);
 
 }

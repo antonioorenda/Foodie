@@ -29,7 +29,6 @@
         </div>
     </div>
 </section>
-<!-- / .title -->
 
 <section id="contact-page" class="container main">
 

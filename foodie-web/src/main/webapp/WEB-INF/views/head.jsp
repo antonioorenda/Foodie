@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sl-slide.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/jquery.datetimepicker.min.css" >
 
     <script src="${pageContext.request.contextPath}/resources/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 </head>

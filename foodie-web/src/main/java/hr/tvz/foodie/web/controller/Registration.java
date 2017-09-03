@@ -94,7 +94,7 @@ public class Registration {
 		return "redirect:home";
 	}
 
-	public String getPage(HttpServletRequest request) {
+	public static String getPage(HttpServletRequest request) {
 		String referrer = request.getHeader("referer");
 		String[] parts = referrer.split("/");
 

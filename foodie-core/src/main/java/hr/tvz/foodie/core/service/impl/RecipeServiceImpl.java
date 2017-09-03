@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -124,9 +125,9 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	@Override
-	public List<Recipe> searchRecipes(String title, String skillLevel, FoodType foodType) {
+	public List<Recipe> searchRecipes(String title, String skillLevel, FoodType foodType, Date dateFrom, Date dateTo) {
 
-		List<Recipe> searchRecipes = recipeDao.searchRecipes(title, skillLevel, foodType);
+		List<Recipe> searchRecipes = recipeDao.searchRecipes(title, skillLevel, foodType, dateFrom, dateTo);
 
 		searchRecipes.forEach(recipe -> {
 			if (recipe.getImage() == null) {

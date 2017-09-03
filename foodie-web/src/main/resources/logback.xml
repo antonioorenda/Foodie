@@ -19,7 +19,6 @@
 	<logger level="INFO" name="org.hibernate" />
 	<logger level="INFO"  name="org.springframework" />
 
-	<!-- Stavljaju se na warn kako ne bi ispisivali beskorisne info poruke: -->
 	<logger level="WARN"  name="org.springframework.web.context.support.XmlWebApplicationContext"/>
 	<logger level="WARN"  name="org.springframework.security.config.SecurityNamespaceHandler" />
 	<logger level="WARN"  name="org.springframework.security.core.SpringSecurityCoreVersion" />

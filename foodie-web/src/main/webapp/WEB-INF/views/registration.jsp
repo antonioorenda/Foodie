@@ -30,8 +30,6 @@
         </div>
     </div>
 </section>
-<!-- / .title -->
-
 
 <section id="registration-page" class="container">
 
@@ -40,7 +38,9 @@
     </c:if>
 
     <c:if test="${usernameExists}">
-        <div class="status alert alert-error" id="displayError">User with that username already exists! Choose another username.</div>
+        <div class="status alert alert-error" id="displayError">User with that username already exists! Choose another
+            username.
+        </div>
     </c:if>
 
     <form class="center" action="registration" method="POST">
@@ -94,7 +94,6 @@
         </fieldset>
     </form>
 </section>
-<!-- /#registration-page -->
 
 <!--Footer-->
 <jsp:include page="footer.jsp"/>
