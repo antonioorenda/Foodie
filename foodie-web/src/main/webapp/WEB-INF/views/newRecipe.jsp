@@ -86,9 +86,9 @@
                         <option selected="selected" disabled="disabled" style="display: none;" value="">Choose Skill
                             Level
                         </option>
-                        <option value="Easy">Easy</option>
-                        <option value="Intermediate">Intermediate</option>
-                        <option value="Advanced">Advanced</option>
+                        <option value="easy">Easy</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
                     </select>
                 </div>
 

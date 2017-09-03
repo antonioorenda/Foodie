@@ -40,6 +40,9 @@ public class UpdateRecipe {
 	public String updateRecipe(@PathVariable("id") Long id, Model model, @Valid @ModelAttribute("recipe") Recipe
 			updatedRecipe, BindingResult bindingResult, @RequestParam("file") MultipartFile file) {
 
+		FoodType foodType = foodieService.getFoodTypeById(updatedRecipe.getFoodType().getId());
+		updatedRecipe.setFoodType(foodType);
+
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("recipeHasErrors", true);
 			model.addAttribute("foodTypes", foodieService.getAllFoodTypes());
@@ -48,9 +51,6 @@ public class UpdateRecipe {
 		}
 
 		Recipe oldRecipe = recipeService.getRecipeById(id);
-
-		FoodType foodType = foodieService.getFoodTypeById(updatedRecipe.getFoodType().getId());
-		updatedRecipe.setFoodType(foodType);
 
 		if (!file.isEmpty()) {
 			try {

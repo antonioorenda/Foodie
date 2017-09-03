@@ -42,14 +42,15 @@ public class Search {
 								@DateTimeFormat(pattern = "dd.MM.yyyy") Date dateFrom,
 								@DateTimeFormat(pattern = "dd.MM.yyyy") Date dateTo) {
 
-		if (title.equals("") && skillLevel == null && foodType == null && dateFrom == null && dateTo == null) {
-			return "redirect:" + this.referrer;
-		}
-
 		String referrer = getPage(request);
 
 		if (!referrer.contains("search")) {
 			this.referrer = referrer;
+		}
+
+		if (title.equals("") && skillLevel == null && foodType == null && dateFrom == null && dateTo == null) {
+			String redirectPage = this.referrer != null ? this.referrer : referrer;
+			return "redirect: " + redirectPage;
 		}
 
 		if (this.referrer.equals("statistics")) {

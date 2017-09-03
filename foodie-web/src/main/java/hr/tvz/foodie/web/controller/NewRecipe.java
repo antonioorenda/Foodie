@@ -44,8 +44,12 @@ public class NewRecipe {
 							 @RequestParam("amount") List<String> amount, @RequestParam("file") MultipartFile file,
 							 HttpServletRequest request) {
 
+		FoodType foodType = foodieService.getFoodTypeById(recipe.getFoodType().getId());
+		recipe.setFoodType(foodType);
+
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("recipeHasErrors", true);
+			model.addAttribute("foodTypes", foodieService.getAllFoodTypes());
 
 			return "newRecipe";
 		}
@@ -53,9 +57,6 @@ public class NewRecipe {
 		for (int i = 0; i < amount.size(); i++) {
 			recipe.getIngredients().get(i).setAmount(Integer.parseInt(amount.get(i)));
 		}
-
-		FoodType foodType = foodieService.getFoodTypeById(recipe.getFoodType().getId());
-		recipe.setFoodType(foodType);
 
 		try {
 			recipe.setImage(file.getBytes());
